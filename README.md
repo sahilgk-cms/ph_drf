@@ -9,25 +9,21 @@ Trying to display all the articles from PH_EBS MongoDB database using Django Res
 
 ## Folder structure
 ```
-ph_django
+ph_drf
 ├── ph
 │  ├── migrations
 │  │  ├── __pycache__
 │  │  │  └── __init__.cpython-312.pyc
 │  │  └── __init__.py
-│  ├── templates
-│  │  └── ph
-│  │     ├── article_detail.html
-│  │     ├── article_list.html
-│  │     └── base.html
 │  ├── admin.py
 │  ├── apps.py
 │  ├── models.py
+│  ├── serializers.py
 │  ├── tests.py
 │  ├── urls.py
 │  ├── views.py
 │  └── __init__.py
-├── ph_django
+├── ph_drf
 │  ├── asgi.py
 │  ├── settings.py
 │  ├── urls.py
