@@ -101,5 +101,7 @@ The server runs on http://localhost:8000
 
 ## Screenshots
 
-![App Screenshot](https://via.placeholder.com/468x300?text=App+Screenshot+Here)
+![image](https://github.com/user-attachments/assets/26237f36-fa36-4a38-a99c-ffba719de37f)
+![image](https://github.com/user-attachments/assets/971e9dd0-ca71-49b8-a1d6-d2a072857a8c)
+
 
