@@ -103,5 +103,6 @@ The server runs on http://localhost:8000
 
 ![image](https://github.com/user-attachments/assets/26237f36-fa36-4a38-a99c-ffba719de37f)
 ![image](https://github.com/user-attachments/assets/971e9dd0-ca71-49b8-a1d6-d2a072857a8c)
+![image](https://github.com/user-attachments/assets/6a3fc170-235a-46a3-8be4-bc59caf85ae1)
 
 
