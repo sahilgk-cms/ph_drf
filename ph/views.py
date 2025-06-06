@@ -81,7 +81,25 @@ class ArticleDetailAV(APIView):
         serializer = ArticleSerializer(article)
         return Response(serializer.data)
 
-        
+
+class GroupBySentimentAV(APIView):
+    def get(self, request):
+        db = get_db()
+        collection = db["processed_data"]
+
+        #group by sentiment and value count
+        pipeline = [
+                    {"$group": {"_id":"$sentiment_color",
+                      "count": {"$sum":1}}},
+                    {"$sort": SON([("count", -1)])}
+                    ] 
+
+        results = list(collection.aggregate(pipeline))
+
+        sentiments = [r["_id"] for r in results]
+        count = [r["count"] for r in results] 
+
+        return Response({"sentiment": sentiments, "count": count})
 
 # These are some more inbuilt API Views which work comfortably with Django models but not with MongoDB
 # These inbuilt views could have helped in reducing code 
