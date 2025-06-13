@@ -12,8 +12,20 @@ from pymongo import DESCENDING
 from bson import ObjectId
 from rest_framework import status
 from rest_framework_mongoengine.generics import ListAPIView, RetrieveAPIView
+from bson.son import SON
+from datetime import datetime
+from dateutil.relativedelta import relativedelta
 # Create your views here.
 
+      
+TIMESPAN_DICT = {
+    'this week': datetime.now() - relativedelta(days=7),
+    'this month': datetime.now().replace(day=1),
+    'past 3 months': datetime.now() - relativedelta(months=3),
+    'past 6 months': datetime.now() - relativedelta(months=6),
+    'past 1 year': datetime.now() - relativedelta(years=1),
+    'all time': datetime.now() - relativedelta(years=100),
+}
 
       
 class ArticleListAV(APIView):
@@ -23,13 +35,45 @@ class ArticleListAV(APIView):
 
         # Filters
         match_stage = {}
-        sentiment_color = request.GET.get('sentiment_color')
-        if sentiment_color:
-            match_stage['sentiment_color'] = sentiment_color
 
-        category = request.GET.get('category')
-        if category:
-            match_stage['category'] = {'$in': [category]}
+        # Severity
+        severity = request.GET.get('Severity')
+        if severity and severity != "All":
+            sentiment_color = None
+            if severity == "Low":
+                sentiment_color = "green"
+            elif severity == "Medium":
+                sentiment_color = "orange"
+            elif severity == "High":
+                sentiment_color = "red"
+
+            if sentiment_color:
+                match_stage['sentiment_color'] = sentiment_color
+
+        # Category
+        category = request.GET.get('Categories')
+        if category and category != "All":
+            match_stage['category'] = {'$in': [category.lower()]}
+
+        # timespan
+        timespan = (request.GET.get("Timespan") or "").lower()
+        if timespan != "All Time":
+            start_date = TIMESPAN_DICT.get(timespan)
+            if start_date:
+                match_stage["$expr"] = {
+                    "$gte":[
+                        {
+                            "$dateFromString":{
+                                "dateString": "$date",
+                                "format": "%d/%m/%Y",
+                                "onError": None,
+                                "onNull": None
+                            }
+                        },
+                        start_date
+                    ]
+                }
+            
 
         # Pagination
         paginator = PageNumberPagination()
@@ -60,7 +104,6 @@ class ArticleListAV(APIView):
             'previous': page_number - 1 if page_number > 1 else None,
             'results': serializer.data,
         })
-
 
 
 class ArticleDetailAV(APIView):
