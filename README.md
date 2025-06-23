@@ -86,7 +86,8 @@ The server runs on http://localhost:8000
 | :-------- | :------- | :------------------------- |
 | None |  | Fetches JSON containing all articles from MongoDB |
 
-![image](https://github.com/user-attachments/assets/26237f36-fa36-4a38-a99c-ffba719de37f)
+![image](https://github.com/user-attachments/assets/7d128843-b15e-4199-a392-67d712b1ab78)
+
 
 #### Get item
 
@@ -98,7 +99,8 @@ The server runs on http://localhost:8000
 | :-------- | :------- | :-------------------------------- |
 | `id`      | `string` | **Required**. Id of item to fetch |
 
-![image](https://github.com/user-attachments/assets/971e9dd0-ca71-49b8-a1d6-d2a072857a8c)
+![image](https://github.com/user-attachments/assets/138793a6-76fc-4f44-bc4c-01bc5dc4b598)
+
 
 
 ## Screenshots
