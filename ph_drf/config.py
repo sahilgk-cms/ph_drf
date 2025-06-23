@@ -6,6 +6,9 @@ from dateutil.relativedelta import relativedelta
 
 load_dotenv()
 
+MONGODB_URI = os.getenv("MONGODB_URI")
+DATABASE = os.getenv("DATABASE")
+
 GOOGLE_API_KEY_1 = os.getenv("GOOGLE_API_KEY_1")
 GOOGLE_API_KEY_2 = os.getenv("GOOGLE_API_KEY_2")
 GOOGLE_API_KEYS = [GOOGLE_API_KEY_1, GOOGLE_API_KEY_2]
