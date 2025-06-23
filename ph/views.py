@@ -15,20 +15,20 @@ from rest_framework_mongoengine.generics import ListAPIView, RetrieveAPIView
 from bson.son import SON
 from datetime import datetime
 from dateutil.relativedelta import relativedelta
+from rest_framework.permissions import IsAuthenticated
+from rest_framework_simplejwt.authentication import JWTAuthentication
+from ph.utils import generate_reports, get_previous_data
+from ph.config import TIMESPAN_DICT
 # Create your views here.
 
-      
-TIMESPAN_DICT = {
-    'this week': datetime.now() - relativedelta(days=7),
-    'this month': datetime.now().replace(day=1),
-    'past 3 months': datetime.now() - relativedelta(months=3),
-    'past 6 months': datetime.now() - relativedelta(months=6),
-    'past 1 year': datetime.now() - relativedelta(years=1),
-    'all time': datetime.now() - relativedelta(years=100),
-}
+
+
 
       
 class ArticleListAV(APIView):
+    #authentication_classes = [JWTAuthentication]
+    #permission_classes = [IsAuthenticated]
+
     def get(self, request):
         db = get_db()
         collection = db["processed_data"]
@@ -106,6 +106,7 @@ class ArticleListAV(APIView):
         })
 
 
+
 class ArticleDetailAV(APIView):
     def get(self, request, pk):
         db = get_db()
@@ -124,7 +125,7 @@ class ArticleDetailAV(APIView):
         serializer = ArticleSerializer(article)
         return Response(serializer.data)
 
-
+        
 class GroupBySentimentAV(APIView):
     def get(self, request):
         db = get_db()
@@ -143,6 +144,46 @@ class GroupBySentimentAV(APIView):
         count = [r["count"] for r in results] 
 
         return Response({"sentiment": sentiments, "count": count})
+    
+
+
+class GenerateSummaryView(APIView):
+    def get(self, request):
+        prev_data =  get_previous_data()
+
+        #action = request.GET.get("Action")
+        action = "summary"
+        summary = generate_reports(prev_data, action)
+        if summary:
+            return Response({"summary": summary}, status = status.HTTP_200_OK)
+        else:
+            return Response({"error": "Failed to generate summary"}, status = status.HTTP_500_INTERNAL_SERVER_ERROR)
+        
+
+class GenerateSituationalReportView(APIView):
+    def get(self, request):
+        prev_data =  get_previous_data()
+
+        #action = request.GET.get("Action")
+        action = "situational report"
+        sitrep = generate_reports(prev_data, action)
+        if sitrep:
+            return Response({"situational report": sitrep}, status = status.HTTP_200_OK)
+        else:
+            return Response({"error": "Failed to generate situational report"}, status = status.HTTP_500_INTERNAL_SERVER_ERROR)
+        
+
+class GenerateRiskAssessmentReportView(APIView):
+    def get(self, request):
+        prev_data =  get_previous_data()
+
+        #action = request.GET.get("Action")
+        action = "risk assessment"
+        risk_assess = generate_reports(prev_data, action)
+        if risk_assess:
+            return Response({"risk assessment": risk_assess}, status = status.HTTP_200_OK)
+        else:
+            return Response({"error": "Failed to generate risk assessment"}, status = status.HTTP_500_INTERNAL_SERVER_ERROR)
 
 # These are some more inbuilt API Views which work comfortably with Django models but not with MongoDB
 # These inbuilt views could have helped in reducing code 
