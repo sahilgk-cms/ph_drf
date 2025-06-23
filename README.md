@@ -122,15 +122,32 @@ The server runs on http://localhost:8000
 
 | Parameter | Type     | Description                |
 | :-------- | :------- | :------------------------- |
-| None |  | Generatessituational report |
+| None |  | Generates situational report |
 
 ![image](https://github.com/user-attachments/assets/4fdd7f21-ed92-44e7-bf8c-3c3cd0328de1)
 
 
-## Screenshots
+#### Generate risk assessment report
+```http
+  GET /ph/generate_risk_assessment
+```
+| Parameter | Type     | Description                |
+| :-------- | :------- | :------------------------- |
+| None |  | Generates risk assessment report |
+
+![image](https://github.com/user-attachments/assets/e083e141-8835-48d3-b7c6-908b466d3942)
 
 
+#### Group by sentiment
+```http
+  GET /ph/group_by_sentiment
+```
+| Parameter | Type     | Description                |
+| :-------- | :------- | :------------------------- |
+| None |  | Group by sentiment |
 
-![image](https://github.com/user-attachments/assets/6a3fc170-235a-46a3-8be4-bc59caf85ae1)
+
+![image](https://github.com/user-attachments/assets/f9e3f5ef-e1c4-40c9-8ef2-7d391240cbc2)
+
 
 
