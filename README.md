@@ -115,6 +115,18 @@ The server runs on http://localhost:8000
 ![image](https://github.com/user-attachments/assets/3c162f63-9762-4da5-8a50-fb45d402c463)
 
 
+#### Generate situational report
+```http
+  GET /ph/generate_situational_report
+```
+
+| Parameter | Type     | Description                |
+| :-------- | :------- | :------------------------- |
+| None |  | Generatessituational report |
+
+![image](https://github.com/user-attachments/assets/4fdd7f21-ed92-44e7-bf8c-3c3cd0328de1)
+
+
 ## Screenshots
 
 
