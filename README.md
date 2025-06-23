@@ -110,7 +110,7 @@ The server runs on http://localhost:8000
 
 | Parameter | Type     | Description                |
 | :-------- | :------- | :------------------------- |
-| None |  | Fetches JSON containing all articles from MongoDB |
+| None |  | Generates Summary |
 
 ![image](https://github.com/user-attachments/assets/3c162f63-9762-4da5-8a50-fb45d402c463)
 
