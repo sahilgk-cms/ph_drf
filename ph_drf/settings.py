@@ -12,6 +12,9 @@ https://docs.djangoproject.com/en/5.2/ref/settings/
 
 from pathlib import Path
 from mongoengine import connect
+from datetime import timedelta
+from ph_drf.config import MONGODB_URI, DATABASE
+
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -75,6 +78,20 @@ TEMPLATES = [
 
 WSGI_APPLICATION = "ph_drf.wsgi.application"
 
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework_simplejwt.authentication.JWTAuthentication',
+    )
+
+}
+
+SIMPLE_JWT = {
+    "ACCESS_TOKEN_LIFETIME": timedelta(days=30),  # ⬅️ set to 30 days or longer
+    "REFRESH_TOKEN_LIFETIME": timedelta(days=90),
+    "ROTATE_REFRESH_TOKENS": False,
+    "BLACKLIST_AFTER_ROTATION": False,
+    "AUTH_HEADER_TYPES": ("Bearer",),
+}
 
 # Database
 # https://docs.djangoproject.com/en/5.2/ref/settings/#databases
@@ -86,8 +103,8 @@ DATABASES = {
     }
 }
 
-connect(db = "ph_tool",
-        host = "mongodb+srv://sachin:c%40talysts@cluster0.d478r7n.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0")
+connect(db = DATABASE,
+        host = MONGODB_URI)
 
 # Password validation
 # https://docs.djangoproject.com/en/5.2/ref/settings/#auth-password-validators
