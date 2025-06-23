@@ -17,7 +17,6 @@ ph_drf
 │  │  └── __init__.py
 │  ├── admin.py
 │  ├── apps.py
-│  ├── config.py
 │  ├── models.py
 │  ├── serializers.py
 │  ├── tests.py
@@ -27,6 +26,7 @@ ph_drf
 │  └── __init__.py
 ├── ph_drf
 │  ├── asgi.py
+│  ├── config.py
 │  ├── settings.py
 │  ├── urls.py
 │  ├── wsgi.py
