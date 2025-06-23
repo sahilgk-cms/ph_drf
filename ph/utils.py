@@ -10,7 +10,7 @@ import logging
 from mongoengine.connection import get_db
 from datetime import datetime
 from dateutil.relativedelta import relativedelta
-from ph.config import GOOGLE_API_KEYS, GEMINI_MODEL_NAME, TIMESPAN_DICT
+from ph_drf.config import GOOGLE_API_KEYS, GEMINI_MODEL_NAME, TIMESPAN_DICT
 
 
 def get_previous_data(duration: str = "this week") -> List[dict]:
