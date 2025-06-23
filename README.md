@@ -103,6 +103,18 @@ The server runs on http://localhost:8000
 
 
 
+#### Generate summary
+```http
+  GET /ph/generate_summary
+```
+
+| Parameter | Type     | Description                |
+| :-------- | :------- | :------------------------- |
+| None |  | Fetches JSON containing all articles from MongoDB |
+
+![image](https://github.com/user-attachments/assets/3c162f63-9762-4da5-8a50-fb45d402c463)
+
+
 ## Screenshots
 
 
