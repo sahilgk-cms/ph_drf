@@ -18,7 +18,7 @@ from dateutil.relativedelta import relativedelta
 from rest_framework.permissions import IsAuthenticated
 from rest_framework_simplejwt.authentication import JWTAuthentication
 from ph.utils import generate_reports, get_previous_data
-from ph.config import TIMESPAN_DICT
+from ph_drf.config import TIMESPAN_DICT
 # Create your views here.
 
 
