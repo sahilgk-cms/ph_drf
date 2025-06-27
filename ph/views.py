@@ -15,9 +15,10 @@ from rest_framework_mongoengine.generics import ListAPIView, RetrieveAPIView
 from bson.son import SON
 from datetime import datetime
 from dateutil.relativedelta import relativedelta
+from ph.utils.data_retrieving import get_previous_data
 from rest_framework.permissions import IsAuthenticated
 from rest_framework_simplejwt.authentication import JWTAuthentication
-from ph.utils import generate_reports, get_previous_data
+from ph.utils.generating_reports import generate_reports, generate_risk_assessment_report
 from ph_drf.config import TIMESPAN_DICT
 # Create your views here.
 
@@ -151,7 +152,6 @@ class GenerateSummaryView(APIView):
     def get(self, request):
         prev_data =  get_previous_data()
 
-        #action = request.GET.get("Action")
         action = "summary"
         summary = generate_reports(prev_data, action)
         if summary:
@@ -164,7 +164,6 @@ class GenerateSituationalReportView(APIView):
     def get(self, request):
         prev_data =  get_previous_data()
 
-        #action = request.GET.get("Action")
         action = "situational report"
         sitrep = generate_reports(prev_data, action)
         if sitrep:
@@ -174,12 +173,9 @@ class GenerateSituationalReportView(APIView):
         
 
 class GenerateRiskAssessmentReportView(APIView):
-    def get(self, request):
-        prev_data =  get_previous_data()
-
-        #action = request.GET.get("Action")
-        action = "risk assessment"
-        risk_assess = generate_reports(prev_data, action)
+    def post(self, request):
+        query = request.data.get("query")
+        risk_assess = generate_risk_assessment_report(query)
         if risk_assess:
             return Response({"risk assessment": risk_assess}, status = status.HTTP_200_OK)
         else:
