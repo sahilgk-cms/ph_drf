@@ -15,13 +15,17 @@ ph_drf
 │  │  ├── __pycache__
 │  │  │  └── __init__.cpython-312.pyc
 │  │  └── __init__.py
+│  ├── utils
+│  │  ├── data_retrieving.py
+│  │  ├── date_formatting.py
+│  │  ├── entity_extraction.py
+│  │  ├── generating_reports.py
 │  ├── admin.py
 │  ├── apps.py
 │  ├── models.py
 │  ├── serializers.py
 │  ├── tests.py
 │  ├── urls.py
-│  ├── utils.py
 │  ├── views.py
 │  └── __init__.py
 ├── ph_drf
@@ -131,13 +135,14 @@ The server runs on http://localhost:8000
 
 #### Generate risk assessment report
 ```http
-  GET /ph/generate_risk_assessment
+  POST /ph/generate_risk_assessment
 ```
 | Parameter | Type     | Description                |
 | :-------- | :------- | :------------------------- |
 | None |  | Generates risk assessment report |
 
-![image](https://github.com/user-attachments/assets/e083e141-8835-48d3-b7c6-908b466d3942)
+
+![image](https://github.com/user-attachments/assets/ea408634-02ac-47e9-ab67-b38293f62251)
 
 
 #### Group by sentiment
