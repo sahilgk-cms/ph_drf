@@ -14,6 +14,8 @@ GOOGLE_API_KEY_2 = os.getenv("GOOGLE_API_KEY_2")
 GOOGLE_API_KEYS = [GOOGLE_API_KEY_1, GOOGLE_API_KEY_2]
 GEMINI_MODEL_NAME = "models/gemini-2.0-flash"
 
+SERP_API_KEY = os.getenv("SERP_API_KEY")
+
 TIMESPAN_DICT = {
     'this week': datetime.now() - relativedelta(days=7),
     'this month': datetime.now().replace(day=1),
