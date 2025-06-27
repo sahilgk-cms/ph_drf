@@ -19,7 +19,7 @@ ph_drf
 │  │  ├── data_retrieving.py
 │  │  ├── date_formatting.py
 │  │  ├── entity_extraction.py
-│  │  ├── generating_reports.py
+│  │  └── generating_reports.py
 │  ├── admin.py
 │  ├── apps.py
 │  ├── models.py
